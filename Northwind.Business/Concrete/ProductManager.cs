@@ -1,4 +1,5 @@
-﻿using Northwind.Business.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using Northwind.Business.Abstract;
 using Northwind.DataAccess.Abstract;
 using Northwind.DataAccess.Concrete.EntityFramework;
 using Northwind.Entities.Concrete;
@@ -22,6 +23,19 @@ namespace Northwind.Business.Concrete
         public void Add(Product product)
         {
             _productDal.Add(product);
+        }
+
+        public void Delete(Product product)
+        {
+            try
+            {
+                _productDal.Delete(product);
+            }
+            catch
+            {
+                throw new Exception("Silme İşlemi Gerçekleşemedi");
+            }
+
         }
 
         public List<Product> GetAll()

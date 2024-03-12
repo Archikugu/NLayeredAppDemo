@@ -59,6 +59,7 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
+            btnRemove = new Button();
             ((System.ComponentModel.ISupportInitialize)dgwProduct).BeginInit();
             gbxCategory.SuspendLayout();
             gbxProductName.SuspendLayout();
@@ -354,11 +355,22 @@
             label5.TabIndex = 0;
             label5.Text = "Ürün Adı";
             // 
+            // btnRemove
+            // 
+            btnRemove.Location = new Point(796, 415);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new Size(166, 31);
+            btnRemove.TabIndex = 13;
+            btnRemove.Text = "Ürünü Sil";
+            btnRemove.UseVisualStyleBackColor = true;
+            btnRemove.Click += btnRemove_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(974, 811);
+            Controls.Add(btnRemove);
             Controls.Add(groupBox1);
             Controls.Add(gbxProductAdd);
             Controls.Add(gbxProductName);
@@ -412,5 +424,6 @@
         private Label label3;
         private Label label4;
         private Label label5;
+        private Button btnRemove;
     }
 }
