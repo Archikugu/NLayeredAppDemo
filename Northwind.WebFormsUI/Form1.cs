@@ -33,6 +33,10 @@ namespace Northwind.WebFormsUI
             cbxCategoryId.DataSource = _categoryService.GetAll();
             cbxCategoryId.DisplayMember = "CategoryName";
             cbxCategoryId.ValueMember = "CategoryId";
+
+            cbxCategoryIdUpdate.DataSource = _categoryService.GetAll();
+            cbxCategoryIdUpdate.DisplayMember = "CategoryName";
+            cbxCategoryIdUpdate.ValueMember = "CategoryId";
         }
 
         private void LoadProducts()
@@ -74,8 +78,33 @@ namespace Northwind.WebFormsUI
                 UnitPrice = Convert.ToDecimal(tbxUnitPrice.Text),
                 UnitsInStock = Convert.ToInt16(tbxStock.Text),
             });
-            MessageBox.Show("Ürün Kaydedildi");
+            MessageBox.Show("Ürün Eklendi");
             LoadProducts();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            _productService.Update(new Product
+            {
+                ProductId = Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value),
+                CategoryId = Convert.ToInt32(cbxCategoryIdUpdate.SelectedValue),
+                ProductName = tbxProductNameUpdate.Text,
+                QuantityPerUnit = tbxQuantityPerUnitUpdate.Text,
+                UnitPrice = Convert.ToDecimal(tbxUnitPriceUpdate.Text),
+                UnitsInStock = Convert.ToInt16(tbxStokUpdate.Text)
+            });
+            MessageBox.Show("Ürün Güncellendi");
+            LoadProducts();
+        }
+
+        private void dgwProduct_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = dgwProduct.CurrentRow;
+            tbxProductNameUpdate.Text = row.Cells[1].Value.ToString();
+            cbxCategoryIdUpdate.SelectedValue = row.Cells[2].Value;
+            tbxUnitPriceUpdate.Text = row.Cells[3].Value.ToString();
+            tbxQuantityPerUnitUpdate.Text = row.Cells[4].Value.ToString();
+            tbxStokUpdate.Text = row.Cells[5].Value.ToString();
         }
     }
 }
